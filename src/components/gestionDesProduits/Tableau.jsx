@@ -7,7 +7,7 @@ function Tableau() {
     useEffect(() => {
    
     const fetchData = async () => {
-    const response = await fetch('http://localhost:3000/getAllCategorieOfProducts');
+    const response = await fetch('https://moble-back.vercel.app/getAllCategorieOfProducts'); // URL mise à jour
     const data = await response.json();
 
     setProducts(data)

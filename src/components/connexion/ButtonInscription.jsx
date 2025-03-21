@@ -13,7 +13,7 @@ function ButtonInscription() {
 
     const handleSignup = async () => {
         try {
-            const response = await fetch("http://localhost:3000/users/signup", {
+            const response = await fetch("https://moble-back.vercel.app/users/signup", { // URL mise à jour
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -104,3 +104,4 @@ function ButtonInscription() {
 }
 
 export default ButtonInscription;
+

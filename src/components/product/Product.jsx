@@ -28,40 +28,33 @@ export default function Product() {
   
       // ✅ Rediriger vers la page panier après l'ajout
       navigate("/panier");
-      }
-    //console.log(import.meta.env.VITE_SERVER_URL)
-    const { id } = useParams()
-    console.log ("voici l'id", id)
-
+    }
     
+    const { id } = useParams()
+    console.log("voici l'id", id)
+
     const [product, setProduct] = useState(null);
   
-
     useEffect(() => {
-       
-       
         const fetchData = async () => {
-        const response = await fetch(`http://localhost:3000/product/${id}`);
+        const response = await fetch(`https://moble-back.vercel.app/product/${id}`); // URL mise à jour
         const data = await response.json();
         console.log("data", data)
-    
-        setProduct(data[0])
-        console.log("data", data[0])
-       
+
+        setProduct(data[0]); // Assure-toi que le produit est bien récupéré
+        console.log("data", data[0]);
     };
     fetchData();
-    }, []);
-//fetchData();
+    }, [id]); // Recharger à chaque fois que l'id change
 
-console.log("mon produit", product);
-
+    console.log("mon produit", product);
 
     return (
         <div>
             <Banner />
             <div className="product-page">
             {/* Vérification que product existe avant de tenter d'accéder à ses propriétés */}
-            {product? (
+            {product ? (
                 <>
                     <div className="product-image">
                         <img className="image-card" src={product.images} alt={product.name} />
@@ -106,4 +99,4 @@ console.log("mon produit", product);
             <Footer />
         </div>
     );
-}  
+}

@@ -12,11 +12,13 @@ function CardList() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(""); // État pour la catégorie sélectionnée
 
+  const API_URL = 'https://moble-back.vercel.app'; // URL de ton back-end
+
   useEffect(() => {
     const fetchData = async () => {
-      let url = 'http://localhost:3000/products';
+      let url = `${API_URL}/products`; // URL pour récupérer tous les produits
       if (selectedCategory) {
-        url = `http://localhost:3000/products/category/${selectedCategory}`;
+        url = `${API_URL}/products/category/${selectedCategory}`; // URL pour récupérer les produits par catégorie
       }
 
       const response = await fetch(url);
@@ -54,19 +56,19 @@ function CardList() {
       {/* Liste des produits filtrés */}
       <div className="center-cards">
         <div className="container-all-cards">
-
-        {products.slice(0, visibleArticles).map((product) => (
-        <Card key={product.id} product={product} />
-      ))}        
-      </div>
+          {products.slice(0, visibleArticles).map((product) => (
+            <Card key={product.id} product={product} />
+          ))}        
+        </div>
       </div>
       <div className='container-show-more-button'>
-      {visibleArticles < products.length && (
-        <button onClick={handleShowMore} className="show-more-button">Voir plus</button>
-      )}
+        {visibleArticles < products.length && (
+          <button onClick={handleShowMore} className="show-more-button">Voir plus</button>
+        )}
       </div>
     </div>
   );
 }
 
 export default CardList;
+

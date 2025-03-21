@@ -1,19 +1,17 @@
-
 function TableauEdit() {
     const [products, setProducts] = useState([])
   
     useEffect(() => {
     
     const fetchData = async () => {
-    const response = await fetch('http://localhost:3000/getProduct');
+    const response = await fetch('https://moble-back.vercel.app/getProduct'); // URL mise à jour
     const data = await response.json();
 
     setProducts(data)
     
 };
 fetchData();
-}
-, []); 
+}, []); 
 
 return (
     <div className="bg-gray-100 text-gray-900 " >
